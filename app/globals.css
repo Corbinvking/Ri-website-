@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 245 241 235; /* Cream background */
+    --foreground: 27 27 27; /* Dark text */
+
+    --card: 26 26 26; /* Dark cards */
+    --card-foreground: 245 241 235; /* Cream text on cards */
+
+    --popover: 245 241 235;
+    --popover-foreground: 27 27 27;
+
+    --primary: 198 93 7; /* Main rust orange */
+    --primary-foreground: 245 241 235;
+
+    --secondary: 139 69 19; /* Darker rust */
+    --secondary-foreground: 245 241 235;
+
+    --muted: 42 42 42; /* Dark muted */
+    --muted-foreground: 245 241 235;
+
+    --accent: 210 105 30; /* Lighter orange */
+    --accent-foreground: 245 241 235;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 245 241 235;
+
+    --border: 42 42 42;
+    --input: 42 42 42;
+    --ring: 198 93 7;
+
+    --radius: 0.5rem;
+
+    /* Rust/Orange gradient colors for text */
+    --color-1: 25 100% 50%; /* Bright Orange */
+    --color-2: 198 93 7; /* Main Rust */
+    --color-3: 35 100% 60%; /* Golden Orange */
+    --color-4: 15 100% 55%; /* Red Orange */
+    --color-5: 45 100% 65%; /* Yellow Orange */
+  }
+
+  .dark {
+    --background: 13 13 23; /* Keep dark background for dark mode */
+    --foreground: 245 241 235;
+
+    --card: 26 26 26;
+    --card-foreground: 245 241 235;
+
+    --popover: 26 26 26;
+    --popover-foreground: 245 241 235;
+
+    --primary: 198 93 7;
+    --primary-foreground: 245 241 235;
+
+    --secondary: 139 69 19;
+    --secondary-foreground: 245 241 235;
+
+    --muted: 42 42 42;
+    --muted-foreground: 245 241 235;
+
+    --accent: 210 105 30;
+    --accent-foreground: 245 241 235;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 245 241 235;
+
+    --border: 42 42 42;
+    --input: 42 42 42;
+    --ring: 198 93 7;
+
+    /* Rust/Orange gradient colors for text */
+    --color-1: 25 100% 50%; /* Bright Orange */
+    --color-2: 198 93 7; /* Main Rust */
+    --color-3: 35 100% 60%; /* Golden Orange */
+    --color-4: 15 100% 55%; /* Red Orange */
+    --color-5: 45 100% 65%; /* Yellow Orange */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+body {
+  background-color: #0d0d17;
+  color: #f5f1eb;
+}
