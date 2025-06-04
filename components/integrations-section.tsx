@@ -4,6 +4,7 @@ import { useState } from "react"
 import { GradientCard } from "@/components/ui/gradient-card"
 import { Button } from "@/components/ui/button"
 import { DemoLeadPopup } from "@/components/ui/demo-lead-popup"
+import HeroWave from "@/components/ui/dynamic-wave-canvas-background"
 import { Brain, Mic, Workflow, Play } from "lucide-react"
 
 export function IntegrationsSection() {
@@ -15,8 +16,11 @@ export function IntegrationsSection() {
   }
 
   return (
-    <section className="py-20 border-t border-gray-800" id="products">
-      <div className="container">
+    <section className="relative py-20 border-t border-gray-800 overflow-hidden" id="products">
+      {/* Dynamic Wave Background */}
+      <HeroWave />
+      
+      <div className="container relative z-10">
         <div className="flex items-center justify-center gap-2 mb-4">
           <Brain className="h-5 w-5 text-rust" />
           <span className="text-white font-medium">Our Core Solutions</span>

@@ -1,5 +1,4 @@
-import React, { useMemo } from 'react';
-import { useState } from "react";
+import React, { useMemo, useId } from 'react';
 import { cn } from "@/lib/utils";
 
 interface DottedBackgroundProps {
@@ -32,17 +31,18 @@ const DottedBackground: React.FC<DottedBackgroundProps> = ({
   className = '',
   style = {},
 }) => {
+  const baseId = useId();
+  
   const ids = useMemo(() => {
-    const baseId = `dotted-bg-${Math.random().toString(36).substr(2, 9)}`;
     return {
       pattern: `${baseId}-pattern`,
       vignette: `${baseId}-vignette`,
       innerGlow: `${baseId}-inner-glow`,
     };
-  }, []);
+  }, [baseId]);
 
   return (
-    <div className={`w-full h-full ${className}`} style={style}>
+    <div className={`w-full h-full ${className}`} style={style} suppressHydrationWarning>
       <svg
         width="100%"
         height="100%"
