@@ -15,7 +15,9 @@ export const metadata: Metadata = {
 }
 
 const stagewiseConfig = {
-  plugins: []
+  plugins: [],
+  autoConnect: false,
+  port: 5746
 }
 
 export default function RootLayout({

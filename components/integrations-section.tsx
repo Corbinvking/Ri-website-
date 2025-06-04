@@ -92,7 +92,7 @@ export function IntegrationsSection() {
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-rust rounded-full"></div>
                     <span className="text-gray-300">Instant Setup</span>
-                  </div>
+                </div>
                 </div>
               </div>
 
@@ -148,7 +148,7 @@ export function IntegrationsSection() {
                     <div className="flex-grow">
                       <div className="text-xs font-medium">Invoice → Payment → Reconcile</div>
                       <p className="text-xs text-gray-400">Financial automation</p>
-                    </div>
+                </div>
                     <div className="text-xs text-green-400 font-medium">-90%</div>
                   </div>
 
@@ -159,7 +159,7 @@ export function IntegrationsSection() {
                     <div className="flex-grow">
                       <div className="text-xs font-medium">Order → Inventory → Ship</div>
                       <p className="text-xs text-gray-400">Order fulfillment</p>
-                    </div>
+                </div>
                     <div className="text-xs text-green-400 font-medium">+60%</div>
                   </div>
                 </div>

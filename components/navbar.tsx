@@ -25,7 +25,7 @@ export function Navbar() {
               <Image src="/ri-logo.png" alt="RI Logo" width={40} height={40} className="object-contain" />
             </div>
             <span className="text-xl font-bold text-rust">Rivers Intell</span>
-          </Link>
+            </Link>
           
           <nav className="flex items-center gap-4 md:gap-8">
             <Link 
