@@ -11,8 +11,8 @@ interface GradientTextProps {
 }
 
 function GradientText({ className, children, as: Component = "span", ...props }: GradientTextProps) {
-  // Create a motion component from the specified element type
-  const MotionComponent = motion(Component)
+  // Use motion.div or motion.span directly instead of deprecated motion()
+  const MotionComponent = Component === "span" ? motion.span : motion.div
 
   return (
     <MotionComponent

@@ -139,11 +139,11 @@ export function DemoLeadPopup({ isOpen, onClose, demoType, demoTitle, onSubmit }
             {/* Enhancement Notice */}
             <div className="bg-gradient-to-r from-rust/20 to-orange-500/20 rounded-lg p-4 mb-6 border border-rust/30">
               <div className="flex items-start gap-3">
-                <Sparkles className="h-5 w-5 text-rust flex-shrink-0 mt-0.5" />
+                <Phone className="h-5 w-5 text-rust flex-shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="text-white font-medium text-sm mb-1">Enhanced Demo Experience</h3>
+                  <h3 className="text-white font-medium text-sm mb-1">Instant AI Demo Call</h3>
                   <p className="text-gray-300 text-xs">
-                    Providing your contact info allows us to show you the full automation flow and personalize the demo for your business type.
+                    After providing your information, you'll receive an instant demo call from our AI software. It will perform its assigned role, demonstrate the defined actions, and show you exactly how it would handle real customer interactions for your business.
                   </p>
                 </div>
               </div>

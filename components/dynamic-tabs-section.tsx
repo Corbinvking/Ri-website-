@@ -2,10 +2,34 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { DemoLeadPopup } from "@/components/ui/demo-lead-popup"
-import { Zap, Users, Shield, Code, Brain, Bot, Cpu, Play, Workflow, CheckCircle } from "lucide-react"
+import {
+  Bot,
+  Building2,
+  Stethoscope,
+  Scale,
+  Scissors,
+  ShoppingBag,
+  Wrench,
+  GraduationCap,
+  Home,
+  Utensils,
+  Car,
+  HeartHandshake,
+  Briefcase,
+  Play,
+  Zap,
+  Users,
+  Shield,
+  Code,
+  Brain,
+  Cpu,
+  Workflow,
+  CheckCircle,
+  Mic
+} from "lucide-react"
 
 interface NicheItem {
   id: string
@@ -280,6 +304,28 @@ export function DynamicTabsSection() {
   const [isDemoPopupOpen, setIsDemoPopupOpen] = useState(false)
   const [currentDemoType, setCurrentDemoType] = useState("")
   const [currentDemoTitle, setCurrentDemoTitle] = useState("")
+  
+  // Ref for the demo area to scroll to on mobile
+  const demoAreaRef = useRef<HTMLDivElement>(null)
+
+  // Auto-scroll to demo area on mobile when niche is selected
+  useEffect(() => {
+    if (selectedNiche && demoAreaRef.current) {
+      // Check if it's mobile (screen width < 768px)
+      const isMobile = window.innerWidth < 768
+      
+      if (isMobile) {
+        // Small delay to ensure the content has rendered
+        setTimeout(() => {
+          demoAreaRef.current?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest'
+          })
+        }, 300)
+      }
+    }
+  }, [selectedNiche])
 
   const handleDemoClick = (niche: NicheItem) => {
     setCurrentDemoType(niche.id)
@@ -375,7 +421,7 @@ export function DynamicTabsSection() {
               </div>
 
               {/* Demo Area */}
-              <div className="relative">
+              <div ref={demoAreaRef} className="relative">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -405,25 +451,87 @@ export function DynamicTabsSection() {
 
                         <div className="flex-1 flex items-center justify-center">
                           <div className="text-center">
-                        <motion.div
-                          animate={{ scale: [1, 1.1, 1] }}
-                              transition={{ duration: 2, repeat: Infinity }}
-                              className={`w-16 h-16 rounded-full bg-gradient-to-r ${activeContent.color} flex items-center justify-center mx-auto mb-3`}
-                        >
-                              <Brain className="h-6 w-6 text-white" />
-                        </motion.div>
+                            {/* Microphone button similar to hero section */}
+                            <div className="relative mb-4">
+                              <motion.button
+                                className="relative group"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => handleDemoClick(selectedNiche)}
+                              >
+                                {/* Aurora circular glow border */}
+                                <div className={`absolute -inset-[2px] rounded-full bg-gradient-to-r ${activeContent.color} opacity-75 blur-lg transition-all group-hover:opacity-100 group-hover:blur-xl`} />
+                                
+                                {/* Outer glow ring */}
+                                <motion.div
+                                  className={`absolute inset-0 rounded-full bg-gradient-to-r ${activeContent.color}`}
+                                  animate={{ 
+                                    scale: [1, 1.15, 1],
+                                    opacity: [0.3, 0.6, 0.3]
+                                  }}
+                                  transition={{ 
+                                    duration: 2,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                  }}
+                                />
+                                
+                                {/* Main button */}
+                                <div className={`relative w-16 h-16 bg-gradient-to-r ${activeContent.color} rounded-full flex items-center justify-center shadow-lg`}>
+                                  <motion.div
+                                    animate={{ rotate: [0, 5, -5, 0] }}
+                                    transition={{ 
+                                      duration: 2,
+                                      repeat: Infinity,
+                                      ease: "easeInOut"
+                                    }}
+                                  >
+                                    <Mic className="h-6 w-6 text-white" />
+                                  </motion.div>
+                                </div>
+                              </motion.button>
+
+                              {/* Hand-drawn "Try me!" note */}
+                              <motion.div
+                                initial={{ opacity: 0, x: 20, y: -10 }}
+                                animate={{ opacity: 1, x: 0, y: 0 }}
+                                transition={{ duration: 0.8, delay: 0.5 }}
+                                className="absolute -top-2 -right-12 md:-right-16"
+                              >
+                                {/* Arrow pointing to button */}
+                                <svg 
+                                  className="absolute top-6 -left-4 w-10 h-6 text-rust" 
+                                  viewBox="0 0 40 24" 
+                                  fill="none"
+                                >
+                                  <path 
+                                    d="M2 12 C6 10, 16 6, 32 11 C34 12, 36 13, 38 14 L34 12 L36 16" 
+                                    stroke="currentColor" 
+                                    strokeWidth="2" 
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    fill="none"
+                                    style={{
+                                      filter: 'drop-shadow(0 0 4px rgba(198, 93, 7, 0.3))'
+                                    }}
+                                  />
+                                </svg>
+                                
+                                {/* Note text */}
+                                <div className="bg-yellow-200 text-gray-800 px-2 py-1 rounded-lg relative transform rotate-2 shadow-lg border-2 border-yellow-300">
+                                  <div className="font-handwriting text-xs font-medium">
+                                    Try me!
+                                  </div>
+                                  {/* Tape effect */}
+                                  <div className="absolute -top-0.5 left-1 w-4 h-2 bg-yellow-100 opacity-80 rounded-sm transform -rotate-12 border border-yellow-300"></div>
+                                </div>
+                              </motion.div>
+                            </div>
                             <h5 className="text-base font-medium mb-2">Voice AI Demo</h5>
                             <p className="text-gray-400 text-sm mb-4">{selectedNiche.description}</p>
-                            <motion.button
-                              whileHover={{ scale: 1.05 }}
-                              whileTap={{ scale: 0.95 }}
-                              onClick={() => handleDemoClick(selectedNiche)}
-                              className="bg-rust hover:bg-dark-rust text-cream px-4 py-2 rounded-lg font-medium transition-colors duration-200 text-sm"
-                            >
-                              Try Voice Demo
-                            </motion.button>
-                      </div>
-                    </div>
+                            <p className="text-gray-300 text-xs">Click the microphone to try the demo</p>
+                          </div>
+                        </div>
 
                         <div className="mt-4 text-xs text-gray-400 text-center">
                           <p>🎤 Voice chat demo will be embedded here</p>

@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 
 export function FeaturesSection() {
   return (
-    <section className="py-20 bg-gradient-to-b from-[#0d0d17] via-[#1a1a2e] to-[#0d0d17]">
+    <section className="py-20">
       <div className="container">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">

@@ -101,3 +101,22 @@ body {
     font-family: 'Kalam', cursive;
   }
 }
+
+/* Fixes for Framer Motion and animation issues */
+@layer utilities {
+  /* Fix for perspective animation from "none" to value */
+  .motion-perspective-fix {
+    perspective: 1000px;
+  }
+  
+  /* Fix for draggable containers with zero dimensions */
+  .motion-draggable-container {
+    min-width: 1px;
+    min-height: 1px;
+  }
+  
+  /* Override for any elements that might have perspective: none */
+  [style*="perspective: none"] {
+    perspective: 1000px !important;
+  }
+}
