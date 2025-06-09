@@ -1,15 +1,25 @@
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { DottedBackground } from "@/components/ui/dotted-vignette-background"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Brain, Mail, Phone, MapPin, Clock } from "lucide-react"
+import { Brain, Mail, Phone, MapPin, Clock, Calendar } from "lucide-react"
+import Script from "next/script"
 
 export default function ContactPage() {
   return (
     <main className="min-h-screen bg-[#0d0d17] text-white overflow-x-hidden">
       <Navbar />
+      
+      {/* GHL Calendar Embed Script */}
+      <Script 
+        src="https://link.msgsndr.com/js/form_embed.js" 
+        strategy="lazyOnload"
+        onLoad={() => {
+          console.log('GHL script loaded successfully')
+        }}
+        onError={(e) => {
+          console.log('GHL script failed to load:', e)
+        }}
+      />
       
       <section className="relative py-20 overflow-hidden">
         {/* Dotted Background */}
@@ -31,106 +41,46 @@ export default function ContactPage() {
             {/* Header */}
             <div className="text-center mb-16">
               <div className="flex items-center justify-center gap-2 mb-4">
-                <Brain className="h-6 w-6 text-rust" />
-                <span className="text-rust font-medium">Let's Connect</span>
+                <Calendar className="h-6 w-6 text-rust" />
+                <span className="text-rust font-medium">Book Your Call</span>
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="text-white">Ready to Transform</span>
+                <span className="text-white">Schedule Your</span>
                 <br />
-                <span className="text-rust">Your Richmond Business?</span>
+                <span className="text-rust">Discovery Call</span>
               </h1>
               <p className="text-gray-300 text-xl max-w-2xl mx-auto">
-                Get a free consultation and discover how AI can revolutionize your operations. 
-                We'll create a custom solution that fits your specific business needs.
+                Ready to transform your business with AI? Book a 30-minute discovery call to discuss your specific needs and see how we can help you automate and grow.
               </p>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-12">
-              {/* Contact Form */}
+            <div className="space-y-12">
+              {/* Calendar Booking - Full Width */}
               <div className="bg-[#1a1a2e] rounded-2xl p-8 border border-gray-800">
-                <h2 className="text-2xl font-bold mb-6 text-white">Book Your Discovery Call</h2>
-                <form className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">First Name</label>
-                      <Input 
-                        className="bg-[#0d0d17] border-gray-700 text-white focus:border-rust"
-                        placeholder="John"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">Last Name</label>
-                      <Input 
-                        className="bg-[#0d0d17] border-gray-700 text-white focus:border-rust"
-                        placeholder="Smith"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                    <Input 
-                      type="email"
-                      className="bg-[#0d0d17] border-gray-700 text-white focus:border-rust"
-                      placeholder="john@yourcompany.com"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Company</label>
-                    <Input 
-                      className="bg-[#0d0d17] border-gray-700 text-white focus:border-rust"
-                      placeholder="Your Company Name"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Phone</label>
-                    <Input 
-                      type="tel"
-                      className="bg-[#0d0d17] border-gray-700 text-white focus:border-rust"
-                      placeholder="(804) 555-0123"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Industry</label>
-                    <select className="w-full px-3 py-2 bg-[#0d0d17] border border-gray-700 rounded-md text-white focus:border-rust focus:outline-none">
-                      <option value="">Select your industry</option>
-                      <option value="landscaping">Landscaping</option>
-                      <option value="hvac">HVAC</option>
-                      <option value="roofing">Roofing</option>
-                      <option value="solar">Solar Installation</option>
-                      <option value="plumbing">Plumbing</option>
-                      <option value="electrical">Electrical</option>
-                      <option value="dental">Dental Practice</option>
-                      <option value="realestate">Real Estate</option>
-                      <option value="legal">Legal Services</option>
-                      <option value="accounting">Accounting</option>
-                      <option value="therapy">Therapy/Counseling</option>
-                      <option value="veterinary">Veterinary</option>
-                      <option value="restaurant">Restaurant</option>
-                      <option value="retail">Retail/Commerce</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Tell us about your business challenges</label>
-                    <Textarea 
-                      className="bg-[#0d0d17] border-gray-700 text-white focus:border-rust min-h-[120px]"
-                      placeholder="What processes would you like to automate? How many calls do you receive daily? What's your biggest operational challenge?"
-                    />
-                  </div>
-                  
-                  <Button className="w-full bg-rust hover:bg-dark-rust text-white py-3 text-lg shadow-lg shadow-rust/50 hover:shadow-rust/70 hover:shadow-xl transition-all duration-300">
-                    book Your Discovery Call
-                  </Button>
-                </form>
+                <h2 className="text-2xl font-bold mb-6 text-white">Pick a Time That Works For You</h2>
+                
+                {/* GoHighLevel Calendar Embed */}
+                <div className="ghl-calendar-container">
+                  <iframe 
+                    src="https://api.leadconnectorhq.com/widget/booking/TwtttS3OVvzX6xKKYkoO" 
+                    style={{
+                      width: '100%',
+                      height: '700px',
+                      border: 'none',
+                      borderRadius: '12px',
+                      background: '#0d0d17',
+                      overflow: 'hidden'
+                    }}
+                    scrolling="no" 
+                    id="UX5EaKJHvxE4lybvXbuL_1749499971199"
+                    title="Book Discovery Call Calendar"
+                  />
+                </div>
               </div>
 
-              {/* Contact Info */}
-              <div className="space-y-8">
+              {/* Contact Info & What Happens Next - Side by Side Below Calendar */}
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Contact Info */}
                 <div className="bg-[#1a1a2e] rounded-2xl p-6 border border-gray-800">
                   <h3 className="text-xl font-bold mb-4 text-white">Contact Information</h3>
                   <div className="space-y-4">
@@ -176,6 +126,7 @@ export default function ContactPage() {
                   </div>
                 </div>
 
+                {/* What Happens Next */}
                 <div className="bg-gradient-to-r from-rust/20 to-orange-500/20 rounded-2xl p-6 border border-rust/30">
                   <h3 className="text-xl font-bold mb-3 text-white">What Happens Next?</h3>
                   <div className="space-y-3 text-sm">
@@ -183,19 +134,19 @@ export default function ContactPage() {
                       <div className="w-6 h-6 bg-rust rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                         <span className="text-white text-xs font-bold">1</span>
                       </div>
-                      <p className="text-gray-300">We'll review your business needs and schedule a 30-minute discovery call</p>
+                      <p className="text-gray-300">You'll receive instant confirmation and calendar invite with Zoom link</p>
                     </div>
                     <div className="flex items-start gap-3">
                       <div className="w-6 h-6 bg-rust rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                         <span className="text-white text-xs font-bold">2</span>
                       </div>
-                      <p className="text-gray-300">Our team will create a custom AI integration plan for your business</p>
+                      <p className="text-gray-300">We'll discuss your business needs and create a custom AI strategy</p>
                     </div>
                     <div className="flex items-start gap-3">
                       <div className="w-6 h-6 bg-rust rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                         <span className="text-white text-xs font-bold">3</span>
                       </div>
-                      <p className="text-gray-300">We'll implement and launch your AI solution with full support</p>
+                      <p className="text-gray-300">Get a detailed proposal and timeline for your AI implementation</p>
                     </div>
                   </div>
                 </div>

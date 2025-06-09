@@ -73,7 +73,7 @@ export function IndustryCarousel() {
             {[...serviceNiches, ...serviceNiches, ...serviceNiches].map((niche, index) => (
               <Link 
                 key={`service-${index}`}
-                href={`/demo?industry=${encodeURIComponent(niche.name.toLowerCase().replace(/ /g, '-'))}`}
+                href={`/contact?industry=${encodeURIComponent(niche.name.toLowerCase().replace(/ /g, '-'))}&form=service`}
                 className="
                   flex-shrink-0 px-6 py-3 rounded-full 
                   bg-gradient-to-r from-gray-800/50 to-gray-700/30
@@ -97,7 +97,7 @@ export function IndustryCarousel() {
             {[...professionalNiches, ...professionalNiches, ...professionalNiches].map((niche, index) => (
               <Link 
                 key={`professional-${index}`}
-                href={`/demo?industry=${encodeURIComponent(niche.name.toLowerCase().replace(/ /g, '-'))}`}
+                href={`/contact?industry=${encodeURIComponent(niche.name.toLowerCase().replace(/ /g, '-'))}&form=professional`}
                 className="
                   flex-shrink-0 px-6 py-3 rounded-full 
                   bg-gradient-to-r from-gray-800/50 to-gray-700/30
@@ -121,7 +121,7 @@ export function IndustryCarousel() {
             {[...commerceNiches, ...commerceNiches, ...commerceNiches].map((niche, index) => (
               <Link 
                 key={`commerce-${index}`}
-                href={`/demo?industry=${encodeURIComponent(niche.name.toLowerCase().replace(/ /g, '-'))}`}
+                href={`/contact?industry=${encodeURIComponent(niche.name.toLowerCase().replace(/ /g, '-'))}&form=commerce`}
                 className="
                   flex-shrink-0 px-6 py-3 rounded-full 
                   bg-gradient-to-r from-gray-800/50 to-gray-700/30

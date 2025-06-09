@@ -89,23 +89,35 @@ export function FeaturesSection() {
 
             {/* Calendar embed placeholder */}
             <div className="bg-[#0d0d17] rounded-xl p-8 mb-6">
-              <div className="text-center">
-                <div className="bg-rust/20 border border-rust/30 rounded-lg p-6 mb-4">
-                  <svg
-                    className="w-12 h-12 text-rust mx-auto mb-3"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    />
-                  </svg>
-                  <p className="text-gray-300">Calendar booking widget will be embedded here</p>
-                  <p className="text-sm text-gray-400 mt-2">Integration coming soon</p>
+              {/* GoHighLevel Calendar Embed */}
+              <div className="ghl-calendar-container">
+                {/* Replace this div with your actual GHL calendar embed code */}
+                <div className="text-center border border-gray-700 rounded-lg p-6">
+                  <p className="text-gray-400 mb-4">GHL Calendar Embed Goes Here</p>
+                  <code className="text-xs text-gray-500 block mb-4">
+                    {`<iframe src="https://yoursubdomain.gohighlevel.com/widget/booking/CALENDAR_ID" 
+                      width="100%" height="800px" frameborder="0"
+                      style="border-radius: 8px;"></iframe>`}
+                  </code>
+                  
+                  {/* Fallback placeholder */}
+                  <div className="bg-rust/20 border border-rust/30 rounded-lg p-6">
+                    <svg
+                      className="w-12 h-12 text-rust mx-auto mb-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
+                    </svg>
+                    <p className="text-gray-300">GHL Calendar Integration</p>
+                    <p className="text-sm text-gray-400 mt-2">Replace with actual embed code</p>
+                  </div>
                 </div>
               </div>
             </div>

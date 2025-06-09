@@ -172,3 +172,109 @@ body {
 .pause-animation:hover {
   animation-play-state: paused;
 }
+
+/* GoHighLevel Widget Customization */
+.ghl-form-container iframe,
+.ghl-calendar-container iframe {
+  border-radius: 12px;
+  border: 1px solid rgba(75, 85, 99, 0.3);
+  background: #0d0d17;
+}
+
+/* Enhanced GHL Form Integration */
+.ghl-form-container,
+.ghl-calendar-container {
+  /* CSS Variables for consistent theming */
+  --ghl-primary-color: #C65D07;
+  --ghl-primary-hover: #8B4513;
+  --ghl-text-color: #f5f1eb;
+  --ghl-bg-color: #0d0d17;
+  --ghl-border-color: rgba(75, 85, 99, 0.3);
+  --ghl-border-focus: #C65D07;
+  
+  /* Container styling */
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0d0d17;
+}
+
+/* Target GHL form/calendar elements inside iframe (if accessible) */
+.ghl-form-container iframe,
+.ghl-calendar-container iframe {
+  transition: all 0.3s ease;
+}
+
+.ghl-form-container iframe:hover,
+.ghl-calendar-container iframe:hover {
+  border-color: rgba(198, 93, 7, 0.5);
+}
+
+/* Responsive height adjustments */
+@media (max-width: 768px) {
+  .ghl-form-container iframe,
+  .ghl-calendar-container iframe {
+    height: 800px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .ghl-form-container iframe,
+  .ghl-calendar-container iframe {
+    height: 700px !important;
+  }
+}
+
+/* Demo popup scroll behavior fixes */
+.ghl-form-container iframe {
+  /* Prevent iframe from capturing scroll when not actively focused */
+  overflow: hidden;
+}
+
+.ghl-form-container iframe:focus-within {
+  /* Allow scrolling only when user is actively interacting with form */
+  overflow: auto;
+}
+
+/* Ensure modal doesn't disable body scroll */
+body:has(.demo-popup-open) {
+  overflow: auto !important;
+}
+
+/* Force demo popup form sizing - prevent GHL overrides */
+.form-container-override iframe {
+  height: 500px !important;
+  max-height: 500px !important;
+  min-height: 500px !important;
+  overflow-y: auto !important;
+}
+
+/* Compact demo popup specific styling */
+.form-container-override {
+  height: 500px;
+  overflow: hidden;
+}
+
+/* Fix GHL calendar iframe console errors */
+.ghl-calendar-container iframe {
+  /* Ensure iframe has proper dataset attributes */
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
+.ghl-calendar-container iframe[data-loading] {
+  opacity: 0.8;
+}
+
+/* Prevent GHL script errors by ensuring elements exist */
+#UX5EaKJHvxE4lybvXbuL_1749499971199 {
+  /* Ensure the iframe has required attributes for GHL scripts */
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Global fix for GHL dataset reading errors */
+[data-layout-iframe-id] {
+  /* Ensure all GHL elements have proper dataset access */
+  pointer-events: auto;
+}

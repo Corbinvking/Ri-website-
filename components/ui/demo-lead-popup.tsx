@@ -1,84 +1,30 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { X, Play, Phone, Mail, User, Sparkles } from "lucide-react"
+import { X, Play, Phone } from "lucide-react"
+import Script from "next/script"
 
 interface DemoLeadPopupProps {
   isOpen: boolean
   onClose: () => void
   demoType: string
   demoTitle: string
-  onSubmit?: (data: {
-    name: string
-    phone: string
-    email?: string
-    industry: string
-    demoType: string
-    demoTitle: string
-  }) => void
+  onSubmit?: (data: any) => void
 }
 
 export function DemoLeadPopup({ isOpen, onClose, demoType, demoTitle, onSubmit }: DemoLeadPopupProps) {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    industry: ""
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  // Auto-fill industry based on demo type
-  React.useEffect(() => {
-    if (demoType && isOpen) {
-      setFormData(prev => ({ ...prev, industry: demoType }))
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
     }
-  }, [demoType, isOpen])
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    onSubmit?.({
-      ...formData,
-      demoType,
-      demoTitle
-    })
-    
-    setIsSubmitting(false)
-    onClose()
-    
-    // Reset form
-    setFormData({ name: "", phone: "", email: "", industry: "" })
-  }
-
-  const industryOptions = [
-    { value: "landscaping", label: "Landscaping" },
-    { value: "hvac", label: "HVAC" },
-    { value: "roofing", label: "Roofing" },
-    { value: "solar", label: "Solar Installation" },
-    { value: "plumbing", label: "Plumbing" },
-    { value: "electrical", label: "Electrical" },
-    { value: "dentist", label: "Dental Practice" },
-    { value: "realestate", label: "Real Estate" },
-    { value: "lawyers", label: "Legal Services" },
-    { value: "accountants", label: "Accounting" },
-    { value: "therapists", label: "Therapy/Counseling" },
-    { value: "veterinarians", label: "Veterinary" },
-    { value: "restaurants", label: "Restaurant" },
-    { value: "clothing", label: "Clothing Store" },
-    { value: "retail", label: "Retail Store" },
-    { value: "coaches", label: "Coach/Consultant" },
-    { value: "ecommerce", label: "E-commerce" },
-    { value: "content", label: "Content Creator" },
-    { value: "voice-ai", label: "General Business" },
-    { value: "other", label: "Other" }
-  ]
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
 
   const getDemoDescription = () => {
     switch (demoType) {
@@ -100,149 +46,99 @@ export function DemoLeadPopup({ isOpen, onClose, demoType, demoTitle, onSubmit }
   }
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
-          onClick={onClose}
-        >
+    <>
+      {/* GHL Form Script */}
+      <Script 
+        src="https://link.msgsndr.com/js/form_embed.js" 
+        strategy="lazyOnload"
+      />
+      
+      <AnimatePresence>
+        {isOpen && (
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            transition={{ type: "spring", duration: 0.3 }}
-            className="bg-[#1a1a2e] rounded-2xl border border-gray-700 w-full max-w-md p-6 relative"
-            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm overflow-y-auto"
+            onClick={onClose}
           >
-            {/* Close Button */}
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", duration: 0.3 }}
+              className="bg-[#1a1a2e] rounded-2xl border border-gray-700 w-full max-w-sm relative my-8"
+              onClick={(e) => e.stopPropagation()}
             >
-              <X className="h-5 w-5" />
-            </button>
+              {/* Close Button */}
+              <button
+                onClick={onClose}
+                className="absolute top-2 right-2 text-gray-400 hover:text-white transition-colors z-20"
+              >
+                <X className="h-4 w-4" />
+              </button>
 
-            {/* Header */}
-            <div className="text-center mb-6">
-              <div className="bg-gradient-to-r from-rust to-orange-500 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <Play className="h-8 w-8 text-white" />
-              </div>
-              <h2 className="text-2xl font-bold text-white mb-2">Access {demoTitle} Demo</h2>
-              <p className="text-gray-300 text-sm">
-                {getDemoDescription()}
-              </p>
-            </div>
-
-            {/* Enhancement Notice */}
-            <div className="bg-gradient-to-r from-rust/20 to-orange-500/20 rounded-lg p-4 mb-6 border border-rust/30">
-              <div className="flex items-start gap-3">
-                <Phone className="h-5 w-5 text-rust flex-shrink-0 mt-0.5" />
-                <div>
-                  <h3 className="text-white font-medium text-sm mb-1">Instant AI Demo Call</h3>
-                  <p className="text-gray-300 text-xs">
-                    After providing your information, you'll receive an instant demo call from our AI software. It will perform its assigned role, demonstrate the defined actions, and show you exactly how it would handle real customer interactions for your business.
+              {/* Compact Header */}
+              <div className="p-3 pb-2">
+                <div className="text-center">
+                  <div className="bg-gradient-to-r from-rust to-orange-500 rounded-full p-1 w-6 h-6 mx-auto mb-1 flex items-center justify-center">
+                    <Play className="h-3 w-3 text-white" />
+                  </div>
+                  <h2 className="text-sm font-bold text-white mb-1">Access {demoTitle} Demo</h2>
+                  <p className="text-gray-300 text-xs mb-2">
+                    {getDemoDescription()}
                   </p>
+                  
+                  {/* Enhancement Notice */}
+                  <div className="bg-gradient-to-r from-rust/20 to-orange-500/20 rounded-lg p-2 border border-rust/30">
+                    <div className="flex items-start gap-2">
+                      <Phone className="h-3 w-3 text-rust flex-shrink-0 mt-0.5" />
+                      <div>
+                        <h3 className="text-white font-medium text-xs mb-1">Instant AI Demo Call</h3>
+                        <p className="text-gray-300 text-xs">
+                          After providing your information, you'll receive an instant demo call from our AI software. It will perform its assigned role, demonstrate the defined actions, and show you exactly how it would handle real customer interactions for your business.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  <User className="h-4 w-4 inline mr-1" />
-                  Name *
-                </label>
-                <Input
-                  required
-                  className="bg-[#0d0d17] border-gray-700 text-white focus:border-rust"
-                  placeholder="Your name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                />
+              {/* Very Compact GHL Form Embed */}
+              <div className="px-3 pb-3">
+                <div className="form-container-override">
+                  <iframe
+                    src="https://api.leadconnectorhq.com/widget/form/Vc1gEOzbjHKtDzJF7BPO"
+                    style={{
+                      display: 'block',
+                      width: '100%',
+                      height: '500px',
+                      border: 'none',
+                      borderRadius: '6px',
+                      backgroundColor: '#0d0d17',
+                      maxHeight: '500px',
+                      minHeight: '500px'
+                    }}
+                    id="inline-demo-tiny-Vc1gEOzbjHKtDzJF7BPO" 
+                    data-layout="{'id':'INLINE'}"
+                    data-trigger-type="alwaysShow"
+                    data-trigger-value=""
+                    data-activation-type="alwaysActivated"
+                    data-activation-value=""
+                    data-deactivation-type="neverDeactivate"
+                    data-deactivation-value=""
+                    data-form-name="demo lead form"
+                    data-height="500"
+                    data-layout-iframe-id="inline-demo-tiny-Vc1gEOzbjHKtDzJF7BPO"
+                    data-form-id="Vc1gEOzbjHKtDzJF7BPO"
+                    title="Demo Lead Form"
+                  />
+                </div>
               </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  <Phone className="h-4 w-4 inline mr-1" />
-                  Phone Number *
-                </label>
-                <Input
-                  required
-                  type="tel"
-                  className="bg-[#0d0d17] border-gray-700 text-white focus:border-rust"
-                  placeholder="(804) 555-0123"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  <Mail className="h-4 w-4 inline mr-1" />
-                  Email (Optional)
-                </label>
-                <Input
-                  type="email"
-                  className="bg-[#0d0d17] border-gray-700 text-white focus:border-rust"
-                  placeholder="your@email.com"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Industry/Business Type *
-                </label>
-                <select 
-                  required
-                  className="w-full px-3 py-2 bg-[#0d0d17] border border-gray-700 rounded-md text-white focus:border-rust focus:outline-none"
-                  value={formData.industry}
-                  onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
-                >
-                  <option value="">Select your industry</option>
-                  {industryOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Hidden context fields */}
-              <input type="hidden" value={demoType} />
-              <input type="hidden" value={demoTitle} />
-
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-rust hover:bg-dark-rust text-white py-3 text-lg shadow-lg shadow-rust/50 hover:shadow-rust/70 hover:shadow-xl transition-all duration-300"
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                    Loading Demo...
-                  </>
-                ) : (
-                  <>
-                    <Play className="h-4 w-4 mr-2" />
-                    Start {demoTitle} Demo
-                  </>
-                )}
-              </Button>
-            </form>
-
-            {/* Footer */}
-            <p className="text-center text-xs text-gray-500 mt-4">
-              Demo Type: {demoType} • We'll contact you with the {demoTitle.toLowerCase()} AI assistant
-            </p>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        )}
+      </AnimatePresence>
+    </>
   )
 } 
