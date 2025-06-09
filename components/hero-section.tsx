@@ -36,16 +36,16 @@ export function HeroSection() {
       <div className="container relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-8">
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
-            <span className="text-white">AI Voice Facilitators and Automations That</span>
+            <span className="text-white">Employ AI-Powered Staff to</span>
             <br />
             <GradientText as="span" className="text-white">
-              Sell, Book, and Handle Business
+              Handle Calls, Bookings, and Follow-Ups
             </GradientText>
             <br />
-            <span className="text-rust">— So You Don't Have To</span>
+            <span className="text-rust">— So You Can Focus on What Matters</span>
           </h1>
           <p className="text-gray-300 text-xl max-w-3xl mx-auto mb-8">
-            Rivers Intelligence delivers AI solutions built specifically for Richmond businesses. Our voice agents and automation systems handle your calls, bookings, and customer service 24/7.
+            Based in RVA, Rivers Intelligence is your AI growth partner. We package cutting-edge technologies into production-ready solutions — handling integration and optimization so you deploy advanced AI without the complexity.
           </p>
           
           {/* Voice AI Demo Button */}
@@ -136,9 +136,6 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <h3 className="text-xl font-bold text-white mb-2">Try Our Voice AI</h3>
-              <p className="text-gray-300 text-sm max-w-xs mx-auto">
-                Experience our AI voice assistant - click to start a conversation and see how it can transform your business
-              </p>
             </motion.div>
             
             {/* CTA Button */}
@@ -157,7 +154,7 @@ export function HeroSection() {
                   className="px-8 py-4 text-lg font-bold"
                   onClick={() => window.location.href = '/contact'}
                 >
-                  Initiate Your Evolution
+                  Get Started!
                 </AuroraButton>
               </motion.div>
             </motion.div>

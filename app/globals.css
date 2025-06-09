@@ -100,6 +100,27 @@ body {
   .font-handwriting {
     font-family: 'Kalam', cursive;
   }
+
+  /* Fixes for Framer Motion and animation issues */
+  .motion-perspective-fix {
+    perspective: 1000px;
+  }
+  
+  /* Fix for draggable containers with zero dimensions */
+  .motion-draggable-container {
+    min-width: 1px;
+    min-height: 1px;
+  }
+  
+  /* Override for any elements that might have perspective: none */
+  [style*="perspective: none"] {
+    perspective: 1000px !important;
+  }
+
+  /* Carousel hover pause functionality */
+  .hover-pause:hover {
+    animation-play-state: paused;
+  }
 }
 
 /* Fixes for Framer Motion and animation issues */
@@ -119,4 +140,35 @@ body {
   [style*="perspective: none"] {
     perspective: 1000px !important;
   }
+}
+
+/* Carousel Animations */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 30s linear infinite;
+}
+
+.animate-scroll-right {
+  animation: scroll-right 30s linear infinite;
+}
+
+.pause-animation:hover {
+  animation-play-state: paused;
 }

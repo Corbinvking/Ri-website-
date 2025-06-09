@@ -48,7 +48,7 @@ export default function ContactPage() {
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Contact Form */}
               <div className="bg-[#1a1a2e] rounded-2xl p-8 border border-gray-800">
-                <h2 className="text-2xl font-bold mb-6 text-white">Get Your Free AI Assessment</h2>
+                <h2 className="text-2xl font-bold mb-6 text-white">Book Your Discovery Call</h2>
                 <form className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
@@ -124,7 +124,7 @@ export default function ContactPage() {
                   </div>
                   
                   <Button className="w-full bg-rust hover:bg-dark-rust text-white py-3 text-lg shadow-lg shadow-rust/50 hover:shadow-rust/70 hover:shadow-xl transition-all duration-300">
-                    Get Your Free AI Assessment
+                    book Your Discovery Call
                   </Button>
                 </form>
               </div>

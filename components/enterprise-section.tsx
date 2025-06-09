@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Star, Quote } from "lucide-react"
+import { DottedBackground } from "@/components/ui/dotted-vignette-background"
 
 export function TestimonialsSection() {
   const testimonials = [
@@ -32,8 +33,22 @@ export function TestimonialsSection() {
   ]
 
   return (
-    <section className="py-20">
-      <div className="container">
+    <section className="relative py-20 overflow-hidden">
+      {/* Dotted Background */}
+      <div className="absolute inset-0">
+        <DottedBackground
+          dotColor="rgba(198, 93, 7, 0.3)"
+          backgroundColor="transparent"
+          enableVignette={true}
+          vignetteColor="rgba(13, 13, 23, 0.8)"
+          enableInnerGlow={true}
+          innerGlowColor="rgba(13, 13, 23, 0.6)"
+          dotSize={1.5}
+          dotSpacing={20}
+        />
+      </div>
+
+      <div className="container relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             <span className="text-white">What Richmond Businesses Say</span>

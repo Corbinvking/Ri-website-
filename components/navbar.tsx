@@ -12,20 +12,19 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-[#0d0d17]/80 backdrop-blur-sm">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-6">
-          {/* Mobile logo - just icon */}
+          {/* Mobile logo */}
           <Link href="/" className="md:hidden">
-            <div className="relative h-10 w-10">
-              <Image src="/ri-logo.png" alt="RI Logo" width={40} height={40} className="object-contain" />
+            <div className="relative h-20 w-20">
+              <Image src="/rivers-intelligence-logo.png" alt="Rivers Intelligence Logo" width={80} height={80} className="object-contain" />
             </div>
           </Link>
           
-          {/* Desktop logo - icon + text */}
-          <Link href="/" className="hidden md:flex items-center gap-2">
-            <div className="relative h-10 w-10">
-              <Image src="/ri-logo.png" alt="RI Logo" width={40} height={40} className="object-contain" />
+          {/* Desktop logo */}
+          <Link href="/" className="hidden md:flex items-center">
+            <div className="relative h-24 w-24">
+              <Image src="/rivers-intelligence-logo.png" alt="Rivers Intelligence Logo" width={96} height={96} className="object-contain" />
             </div>
-            <span className="text-xl font-bold text-rust">Rivers Intell</span>
-            </Link>
+          </Link>
           
           <nav className="flex items-center gap-4 md:gap-8">
             <Link 

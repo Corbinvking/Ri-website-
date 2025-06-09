@@ -9,10 +9,9 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between mb-12">
           <div className="mb-8 md:mb-0">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <Image src="/ri-logo.png" alt="Rivers Intelligence Logo" width={32} height={32} />
-              <span className="text-xl font-bold text-rust">Rivers Intelligence</span>
+              <Image src="/rivers-intelligence-logo.png" alt="Rivers Intelligence Logo" width={120} height={32} className="object-contain" />
             </Link>
-            <p className="text-gray-400 mb-4">AI Integration Solutions for Richmond Businesses</p>
+            <p className="text-gray-400 mb-4">Richmond-Based AI Integration Solutions for Businesses Nationwide</p>
             <div className="flex gap-4">
               <Link href="#" className="text-gray-400 hover:text-rust">
                 <Twitter className="h-5 w-5" />
@@ -161,6 +160,10 @@ export function Footer() {
             <span className="text-gray-600">|</span>
             <Link href="#" className="text-gray-400 hover:text-rust text-xs">
               Accessibility
+            </Link>
+            <span className="text-gray-600">|</span>
+            <Link href="/vsl" className="text-gray-400 hover:text-rust text-xs">
+              Portal
             </Link>
           </div>
           <div className="text-gray-400 text-xs">© 2025 Rivers Intelligence | All rights reserved.</div>

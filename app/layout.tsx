@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Rivers Intelligence - AI Integration for Richmond Businesses",
   description:
-    "Transform your Richmond business with intelligent AI solutions. Expert AI integration services for local companies.",
+    "Based in Richmond, Virginia, Rivers Intelligence transforms businesses nationwide with intelligent AI solutions. Expert AI integration services from your trusted local team.",
     generator: 'v0.dev'
 }
 

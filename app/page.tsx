@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
 import { IntegrationsSection } from "@/components/integrations-section"
+import { IndustryCarousel } from "@/components/industry-carousel"
 import { FeaturesSection } from "@/components/features-section"
 import { TestimonialsSection } from "@/components/enterprise-section"
 import { EmbedSection } from "@/components/embed-section"
@@ -12,6 +13,7 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <IntegrationsSection />
+      <IndustryCarousel />
       <FeaturesSection />
       <TestimonialsSection />
       <EmbedSection />
