@@ -2,16 +2,30 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 
 export function Navbar() {
   const pathname = usePathname()
+  const router = useRouter()
+
+  const scrollToIndustries = () => {
+    // If we're already on the homepage, just scroll to the carousel
+    if (pathname === "/") {
+      const industriesSection = document.querySelector('#industry-carousel')
+      if (industriesSection) {
+        industriesSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    } else {
+      // If we're on a different page, navigate to homepage with hash
+      router.push('/#industry-carousel')
+    }
+  }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-[#0d0d17]/80 backdrop-blur-sm">
-      <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center gap-6">
+    <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-[#0d0d17]/90 backdrop-blur supports-[backdrop-filter]:bg-[#0d0d17]/60">
+      <div className="container flex h-20 items-center justify-between">
+        <div className="flex items-center gap-8">
           {/* Mobile logo */}
           <Link href="/" className="md:hidden">
             <div className="relative h-20 w-20">
@@ -37,16 +51,12 @@ export function Navbar() {
             >
               Home
             </Link>
-            <Link 
-              href="/demo" 
-              className={`text-sm font-medium transition-all duration-300 relative ${
-                pathname === "/demo" 
-                  ? "text-rust shadow-[0_4px_12px_rgba(198,93,7,0.5)] after:absolute after:bottom-[-8px] after:left-0 after:right-0 after:h-0.5 after:bg-rust after:shadow-[0_0_8px_rgba(198,93,7,0.8)]" 
-                  : "text-gray-200 hover:text-rust"
-              }`}
+            <button 
+              onClick={scrollToIndustries}
+              className="text-sm font-medium transition-all duration-300 relative text-gray-200 hover:text-rust bg-gradient-to-r from-rust/20 to-orange-500/20 px-4 py-2 rounded-lg border border-rust/30 hover:shadow-[0_0_20px_rgba(198,93,7,0.5)] hover:border-rust/50"
             >
-              Industry-Specific Demos
-            </Link>
+              Industries
+            </button>
           </nav>
         </div>
         <div className="flex items-center gap-4">

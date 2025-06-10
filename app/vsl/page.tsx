@@ -1,9 +1,20 @@
+"use client"
+
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Play, Phone, CheckCircle, TrendingUp, Clock, Users, Shield, Zap } from "lucide-react"
+import { DemoLeadPopup } from "@/components/ui/demo-lead-popup"
+import { Play, Phone, CheckCircle, TrendingUp, Clock, Users, Shield, Zap, Mic } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
 export default function VSLPage() {
+  const [isDemoPopupOpen, setIsDemoPopupOpen] = useState(false)
+
+  const handleDemoSubmit = (data: any) => {
+    console.log("VSL Voice AI demo lead captured:", data)
+    // Here you would send the data to your backend/CRM
+  }
+
   return (
     <div className="min-h-screen bg-[#0d0d17] text-white">
       {/* Simple Header */}
@@ -37,24 +48,70 @@ export default function VSLPage() {
             </p>
           </div>
 
-          {/* Video Embed Space */}
-          <div className="relative bg-[#1a1a2e] rounded-lg overflow-hidden aspect-video border border-gray-700">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-rust rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Play className="w-6 h-6 text-white ml-1" />
-                </div>
-                <p className="text-gray-400 text-sm">Video will be embedded here</p>
-                <p className="text-gray-500 text-xs mt-1">Click to play demo</p>
-              </div>
-            </div>
+          {/* Canva Presentation Embed */}
+          <div style={{
+            position: 'relative', 
+            width: '100%', 
+            height: 0, 
+            paddingTop: '56.2500%',
+            paddingBottom: 0, 
+            boxShadow: '0 2px 8px 0 rgba(63,69,81,0.16)', 
+            marginTop: '1.6em', 
+            marginBottom: '0.9em', 
+            overflow: 'hidden',
+            borderRadius: '8px', 
+            willChange: 'transform'
+          }}>
+            <iframe 
+              loading="lazy" 
+              style={{
+                position: 'absolute', 
+                width: '100%', 
+                height: '100%', 
+                top: 0, 
+                left: 0, 
+                border: 'none', 
+                padding: 0,
+                margin: 0
+              }}
+              src="https://www.canva.com/design/DAGp1bIcsGY/U5RNmBQhgeSprMm2XZpZKw/view?embed" 
+              allowFullScreen 
+              allow="fullscreen"
+              title="Orange and Black Minimalist Creative Brief Presentation"
+            />
+          </div>
+          <div className="text-center mb-4">
+            <a 
+              href="https://www.canva.com/design/DAGp1bIcsGY/U5RNmBQhgeSprMm2XZpZKw/view?utm_content=DAGp1bIcsGY&utm_campaign=designshare&utm_medium=embeds&utm_source=link" 
+              target="_blank" 
+              rel="noopener"
+              className="text-gray-400 text-xs hover:text-rust transition-colors"
+            >
+              Rivers Intelligence Intro
+            </a>
+          </div>
+
+          {/* Microphone Try Me Button */}
+          <div className="text-center">
+            <p className="text-white text-sm font-medium mb-3">
+              Experience Our AI Voice Technology
+            </p>
+            <p className="text-gray-300 text-xs mb-4">
+              Click below to hear how natural and intelligent our AI sounds
+            </p>
+            <Button 
+              onClick={() => setIsDemoPopupOpen(true)}
+              className="w-16 h-16 rounded-full bg-gradient-to-b from-rust to-orange-500 hover:from-dark-rust hover:to-rust text-white p-0 shadow-lg shadow-rust/50 hover:shadow-xl hover:shadow-rust/60 transition-all duration-300"
+            >
+              <Mic className="w-6 h-6" />
+            </Button>
           </div>
 
           {/* CTA After Video */}
           <div className="text-center">
             <Button 
               asChild 
-              className="bg-rust hover:bg-dark-rust text-white px-8 py-3 text-lg font-bold"
+              className="bg-gradient-to-b from-rust via-orange-500 to-yellow-500 hover:from-dark-rust hover:via-rust hover:to-orange-500 text-white px-8 py-3 text-lg font-bold shadow-lg shadow-rust/50 hover:shadow-xl hover:shadow-rust/60 transition-all duration-300"
             >
               <a href="/contact">
                 <Phone className="w-5 h-5 mr-2" />
@@ -154,7 +211,7 @@ export default function VSLPage() {
           <div className="text-center">
             <Button 
               asChild 
-              className="bg-rust hover:bg-dark-rust text-white px-8 py-3 text-lg font-bold"
+              className="bg-gradient-to-b from-rust via-orange-500 to-yellow-500 hover:from-dark-rust hover:via-rust hover:to-orange-500 text-white px-8 py-3 text-lg font-bold shadow-lg shadow-rust/50 hover:shadow-xl hover:shadow-rust/60 transition-all duration-300"
             >
               <a href="/contact">
                 <Phone className="w-5 h-5 mr-2" />
@@ -262,7 +319,7 @@ export default function VSLPage() {
           <div className="text-center">
             <Button 
               asChild 
-              className="bg-rust hover:bg-dark-rust text-white px-8 py-3 text-lg font-bold"
+              className="bg-gradient-to-b from-rust via-orange-500 to-yellow-500 hover:from-dark-rust hover:via-rust hover:to-orange-500 text-white px-8 py-3 text-lg font-bold shadow-lg shadow-rust/50 hover:shadow-xl hover:shadow-rust/60 transition-all duration-300"
             >
               <a href="/contact">
                 <Phone className="w-5 h-5 mr-2" />
@@ -305,7 +362,7 @@ export default function VSLPage() {
           <div className="space-y-4">
             <Button 
               asChild 
-              className="w-full bg-rust hover:bg-dark-rust text-white py-4 text-lg font-bold"
+              className="w-full bg-gradient-to-b from-rust via-orange-500 to-yellow-500 hover:from-dark-rust hover:via-rust hover:to-orange-500 text-white py-4 text-lg font-bold shadow-lg shadow-rust/50 hover:shadow-xl hover:shadow-rust/60 transition-all duration-300"
             >
               <a href="/contact">
                 <Phone className="w-5 h-5 mr-2" />
@@ -329,6 +386,15 @@ export default function VSLPage() {
           </p>
         </div>
       </footer>
+
+      {/* Demo Popup */}
+      <DemoLeadPopup
+        isOpen={isDemoPopupOpen}
+        onClose={() => setIsDemoPopupOpen(false)}
+        demoType="voice-ai"
+        demoTitle="Voice AI Assistant Demo"
+        onSubmit={handleDemoSubmit}
+      />
     </div>
   )
 } 

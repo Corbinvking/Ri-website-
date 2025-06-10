@@ -271,8 +271,12 @@ export function IntegrationsSection() {
               <Button asChild className="bg-rust hover:bg-dark-rust text-cream">
                 <a href="/contact">Schedule Free Consultation</a>
               </Button>
-              <Button asChild variant="outline" className="border-gray-600 text-white hover:bg-gray-800">
-                <a href="/demo">View Live Demos</a>
+              <Button 
+                variant="outline" 
+                className="border-gray-600 text-white hover:bg-gray-800"
+                onClick={() => setIsDemoPopupOpen(true)}
+              >
+                View Live Demos
               </Button>
             </div>
           </div>

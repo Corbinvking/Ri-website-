@@ -213,14 +213,20 @@ body {
 @media (max-width: 768px) {
   .ghl-form-container iframe,
   .ghl-calendar-container iframe {
-    height: 800px !important;
+    height: 700px !important;
   }
 }
 
 @media (max-width: 480px) {
   .ghl-form-container iframe,
   .ghl-calendar-container iframe {
-    height: 700px !important;
+    height: 650px !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .ghl-calendar-container iframe {
+    height: 800px !important;
   }
 }
 
@@ -277,4 +283,30 @@ body:has(.demo-popup-open) {
 [data-layout-iframe-id] {
   /* Ensure all GHL elements have proper dataset access */
   pointer-events: auto;
+}
+
+/* Firefly glow animation for industry carousel */
+@keyframes firefly-glow {
+  0% {
+    background: linear-gradient(to right, rgb(55 65 81 / 0.5), rgb(75 85 99 / 0.3));
+    border-color: rgb(75 85 99 / 0.3);
+    color: rgb(255 255 255 / 0.7);
+    box-shadow: none;
+  }
+  50% {
+    background: linear-gradient(to right, rgb(198 93 7 / 0.4), rgb(249 115 22 / 0.25));
+    border-color: rgb(198 93 7 / 0.4);
+    color: rgb(255 255 255 / 0.9);
+    box-shadow: 0 0 15px rgba(198, 93, 7, 0.3);
+  }
+  100% {
+    background: linear-gradient(to right, rgb(55 65 81 / 0.5), rgb(75 85 99 / 0.3));
+    border-color: rgb(75 85 99 / 0.3);
+    color: rgb(255 255 255 / 0.7);
+    box-shadow: none;
+  }
+}
+
+.firefly-glow {
+  animation: firefly-glow 4s ease-in-out;
 }

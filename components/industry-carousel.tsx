@@ -1,5 +1,8 @@
-import Link from "next/link"
+"use client"
+
 import { DottedBackground } from "@/components/ui/dotted-vignette-background"
+import { DemoLeadPopup } from "@/components/ui/demo-lead-popup"
+import { useEffect, useState } from "react"
 
 // Carousel data
 const serviceNiches = [
@@ -36,8 +39,59 @@ const commerceNiches = [
 ]
 
 export function IndustryCarousel() {
+  const [glowingNiches, setGlowingNiches] = useState<Set<string>>(new Set())
+  const [isDemoPopupOpen, setIsDemoPopupOpen] = useState(false)
+  const [currentDemoType, setCurrentDemoType] = useState("")
+  const [currentDemoTitle, setCurrentDemoTitle] = useState("")
+
+  // Firefly-like glow animation effect
+  useEffect(() => {
+    const allNiches = [...serviceNiches, ...professionalNiches, ...commerceNiches]
+    
+    const createFireflyGlow = () => {
+      // Only allow 1-2 glows at a time
+      if (glowingNiches.size >= 2) return
+      
+      const randomNiche = allNiches[Math.floor(Math.random() * allNiches.length)]
+      const nicheKey = `${randomNiche.name}-${Date.now()}` // Use timestamp for uniqueness
+      
+      setGlowingNiches(prev => new Set([...prev, nicheKey]))
+      
+      // Remove glow after longer duration for slow fade
+      setTimeout(() => {
+        setGlowingNiches(prev => {
+          const newSet = new Set(prev)
+          newSet.delete(nicheKey)
+          return newSet
+        })
+      }, 4000) // 4 seconds for slow rise and fall
+    }
+
+    // Create firefly glows every 6-10 seconds (much slower)
+    const interval = setInterval(() => {
+      createFireflyGlow()
+    }, Math.random() * 4000 + 6000) // 6-10 seconds
+
+    return () => clearInterval(interval)
+  }, [glowingNiches.size])
+
+  const isGlowing = (nicheName: string) => {
+    return Array.from(glowingNiches).some(key => key.startsWith(nicheName))
+  }
+
+  const handleNicheClick = (nicheName: string) => {
+    setCurrentDemoType(nicheName.toLowerCase().replace(/ /g, '-'))
+    setCurrentDemoTitle(nicheName)
+    setIsDemoPopupOpen(true)
+  }
+
+  const handleDemoSubmit = (data: any) => {
+    console.log(`${data.demoType} demo lead captured:`, data)
+    // Here you would send the data to your backend/CRM
+  }
+
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section id="industry-carousel" className="relative py-20 overflow-hidden">
       {/* Dotted Background */}
       <div className="absolute inset-0">
         <DottedBackground
@@ -59,34 +113,38 @@ export function IndustryCarousel() {
             <span className="text-white">Industries We </span>
             <span className="text-rust">Serve</span>
           </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            From service businesses to professional practices and commerce - we cover all domains
+          <p className="text-gray-300 max-w-2xl mx-auto mb-4">
+            From service businesses to professional practices and commerce - we cover all domains.
+          </p>
+          <p className="text-rust font-medium">
+            See your domain? Click it and receive an instant demo from our AI callers!
           </p>
         </div>
       </div>
 
       {/* Full-width scrolling carousels */}
-      <div className="space-y-6 relative z-10">
+      <div className="space-y-6">
         {/* Service Niches - Scrolling Left */}
         <div className="relative overflow-hidden w-full">
           <div className="flex animate-scroll-left gap-4 hover-pause" style={{ width: 'max-content' }}>
             {[...serviceNiches, ...serviceNiches, ...serviceNiches].map((niche, index) => (
-              <Link 
+              <button 
                 key={`service-${index}`}
-                href={`/contact?industry=${encodeURIComponent(niche.name.toLowerCase().replace(/ /g, '-'))}&form=service`}
-                className="
+                onClick={() => handleNicheClick(niche.name)}
+                className={`
                   flex-shrink-0 px-6 py-3 rounded-full 
                   bg-gradient-to-r from-gray-800/50 to-gray-700/30
                   text-white/70 font-medium 
                   border border-gray-600/30 backdrop-blur-sm
-                  transition-all duration-300 transform cursor-pointer
+                  transition-all duration-[2000ms] ease-in-out transform cursor-pointer
                   hover:bg-gradient-to-r hover:from-rust/30 hover:to-orange-500/20
                   hover:text-white hover:shadow-lg hover:shadow-rust/50 
                   hover:border-rust/50 hover:scale-105
-                "
+                  ${isGlowing(niche.name) ? 'firefly-glow' : ''}
+                `}
               >
                 {niche.name}
-              </Link>
+              </button>
             ))}
           </div>
         </div>
@@ -95,22 +153,23 @@ export function IndustryCarousel() {
         <div className="relative overflow-hidden w-full">
           <div className="flex animate-scroll-right gap-4 hover-pause" style={{ width: 'max-content' }}>
             {[...professionalNiches, ...professionalNiches, ...professionalNiches].map((niche, index) => (
-              <Link 
+              <button 
                 key={`professional-${index}`}
-                href={`/contact?industry=${encodeURIComponent(niche.name.toLowerCase().replace(/ /g, '-'))}&form=professional`}
-                className="
+                onClick={() => handleNicheClick(niche.name)}
+                className={`
                   flex-shrink-0 px-6 py-3 rounded-full 
                   bg-gradient-to-r from-gray-800/50 to-gray-700/30
                   text-white/70 font-medium 
                   border border-gray-600/30 backdrop-blur-sm
-                  transition-all duration-300 transform cursor-pointer
+                  transition-all duration-[2000ms] ease-in-out transform cursor-pointer
                   hover:bg-gradient-to-r hover:from-rust/30 hover:to-orange-500/20
                   hover:text-white hover:shadow-lg hover:shadow-rust/50 
                   hover:border-rust/50 hover:scale-105
-                "
+                  ${isGlowing(niche.name) ? 'firefly-glow' : ''}
+                `}
               >
                 {niche.name}
-              </Link>
+              </button>
             ))}
           </div>
         </div>
@@ -119,26 +178,36 @@ export function IndustryCarousel() {
         <div className="relative overflow-hidden w-full">
           <div className="flex animate-scroll-left gap-4 hover-pause" style={{ width: 'max-content' }}>
             {[...commerceNiches, ...commerceNiches, ...commerceNiches].map((niche, index) => (
-              <Link 
+              <button 
                 key={`commerce-${index}`}
-                href={`/contact?industry=${encodeURIComponent(niche.name.toLowerCase().replace(/ /g, '-'))}&form=commerce`}
-                className="
+                onClick={() => handleNicheClick(niche.name)}
+                className={`
                   flex-shrink-0 px-6 py-3 rounded-full 
                   bg-gradient-to-r from-gray-800/50 to-gray-700/30
                   text-white/70 font-medium 
                   border border-gray-600/30 backdrop-blur-sm
-                  transition-all duration-300 transform cursor-pointer
+                  transition-all duration-[2000ms] ease-in-out transform cursor-pointer
                   hover:bg-gradient-to-r hover:from-rust/30 hover:to-orange-500/20
                   hover:text-white hover:shadow-lg hover:shadow-rust/50 
                   hover:border-rust/50 hover:scale-105
-                "
+                  ${isGlowing(niche.name) ? 'firefly-glow' : ''}
+                `}
               >
                 {niche.name}
-              </Link>
+              </button>
             ))}
           </div>
         </div>
       </div>
+
+      {/* Demo Popup */}
+      <DemoLeadPopup
+        isOpen={isDemoPopupOpen}
+        onClose={() => setIsDemoPopupOpen(false)}
+        demoType={currentDemoType}
+        demoTitle={currentDemoTitle}
+        onSubmit={handleDemoSubmit}
+      />
     </section>
   )
 } 

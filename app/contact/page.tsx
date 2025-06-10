@@ -13,12 +13,6 @@ export default function ContactPage() {
       <Script 
         src="https://link.msgsndr.com/js/form_embed.js" 
         strategy="lazyOnload"
-        onLoad={() => {
-          console.log('GHL script loaded successfully')
-        }}
-        onError={(e) => {
-          console.log('GHL script failed to load:', e)
-        }}
       />
       
       <section className="relative py-20 overflow-hidden">
@@ -65,7 +59,7 @@ export default function ContactPage() {
                     src="https://api.leadconnectorhq.com/widget/booking/TwtttS3OVvzX6xKKYkoO" 
                     style={{
                       width: '100%',
-                      height: '700px',
+                      height: '800px',
                       border: 'none',
                       borderRadius: '12px',
                       background: '#0d0d17',
@@ -74,6 +68,7 @@ export default function ContactPage() {
                     scrolling="no" 
                     id="UX5EaKJHvxE4lybvXbuL_1749499971199"
                     title="Book Discovery Call Calendar"
+                    className="md:h-[800px] h-[700px]"
                   />
                 </div>
               </div>
