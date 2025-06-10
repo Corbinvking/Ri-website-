@@ -2,17 +2,22 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { DemoLeadPopup } from "@/components/ui/demo-lead-popup"
+import { VoiceDemoComponent } from "@/components/ui/voice-demo-component"
 import { Play, Phone, CheckCircle, TrendingUp, Clock, Users, Shield, Zap, Mic } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
 export default function VSLPage() {
-  const [isDemoPopupOpen, setIsDemoPopupOpen] = useState(false)
+  const handleCallStart = () => {
+    console.log("Voice demo call started")
+  }
 
-  const handleDemoSubmit = (data: any) => {
-    console.log("VSL Voice AI demo lead captured:", data)
-    // Here you would send the data to your backend/CRM
+  const handleCallEnd = () => {
+    console.log("Voice demo call ended")
+  }
+
+  const handleTranscript = (transcript: string, role: "user" | "assistant") => {
+    console.log(`${role}: ${transcript}`)
   }
 
   return (
@@ -91,20 +96,21 @@ export default function VSLPage() {
             </a>
           </div>
 
-          {/* Microphone Try Me Button */}
+          {/* Voice Demo Component */}
           <div className="text-center">
-            <p className="text-white text-sm font-medium mb-3">
+            <p className="text-white text-lg font-medium mb-3">
               Experience Our AI Voice Technology
             </p>
-            <p className="text-gray-300 text-xs mb-4">
-              Click below to hear how natural and intelligent our AI sounds
+            <p className="text-gray-300 text-sm mb-6">
+              Click below to have a real conversation with our AI assistant
             </p>
-            <Button 
-              onClick={() => setIsDemoPopupOpen(true)}
-              className="w-16 h-16 rounded-full bg-gradient-to-b from-rust to-orange-500 hover:from-dark-rust hover:to-rust text-white p-0 shadow-lg shadow-rust/50 hover:shadow-xl hover:shadow-rust/60 transition-all duration-300"
-            >
-              <Mic className="w-6 h-6" />
-            </Button>
+            <VoiceDemoComponent
+              publicKey={process.env.NEXT_PUBLIC_VAPI_PUBLIC_KEY || ""}
+              assistantId={process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID || ""}
+              onCallStart={handleCallStart}
+              onCallEnd={handleCallEnd}
+              onTranscript={handleTranscript}
+            />
           </div>
 
           {/* CTA After Video */}
@@ -386,15 +392,6 @@ export default function VSLPage() {
           </p>
         </div>
       </footer>
-
-      {/* Demo Popup */}
-      <DemoLeadPopup
-        isOpen={isDemoPopupOpen}
-        onClose={() => setIsDemoPopupOpen(false)}
-        demoType="voice-ai"
-        demoTitle="Voice AI Assistant Demo"
-        onSubmit={handleDemoSubmit}
-      />
     </div>
   )
 } 
