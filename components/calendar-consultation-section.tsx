@@ -1,7 +1,61 @@
 import { DottedBackground } from "@/components/ui/dotted-vignette-background"
 import { Calendar, Clock, CheckCircle, Star } from "lucide-react"
+import { useEffect } from "react"
 
 export function CalendarConsultationSection() {
+  useEffect(() => {
+    // Listen for GHL booking completion events
+    const handleBookingSuccess = (event: MessageEvent) => {
+      // Check if message is from GHL calendar iframe
+      if (event.origin === 'https://api.leadconnectorhq.com') {
+        try {
+          const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+          
+          // Look for booking success indicators
+          if (
+            data.type === 'calendar_booking_success' ||
+            data.type === 'appointment_scheduled' ||
+            data.message === 'appointment_booked' ||
+            (data.event && data.event.includes('booking_success'))
+          ) {
+            console.log('Calendar booking detected:', data);
+            
+            // Redirect to thank you page
+            window.location.href = '/thank-you';
+          }
+        } catch (error) {
+          console.log('Error parsing booking event:', error);
+        }
+      }
+    };
+
+    // Add event listener for iframe messages
+    window.addEventListener('message', handleBookingSuccess);
+
+    // Alternative: Watch for URL changes in iframe (backup method)
+    const checkIframeUrl = setInterval(() => {
+      try {
+        const iframe = document.getElementById('homepage-calendar-consultation') as HTMLIFrameElement;
+        if (iframe && iframe.contentWindow) {
+          // This might be blocked by CORS, but worth trying
+          const iframeUrl = iframe.contentWindow.location.href;
+          if (iframeUrl.includes('thank') || iframeUrl.includes('success') || iframeUrl.includes('booked')) {
+            console.log('Booking success detected via URL');
+            window.location.href = '/thank-you';
+          }
+        }
+      } catch (error) {
+        // Expected due to CORS restrictions
+      }
+    }, 2000);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('message', handleBookingSuccess);
+      clearInterval(checkIframeUrl);
+    };
+  }, []);
+
   return (
     <section className="relative py-20 overflow-hidden">
       {/* Dotted Background */}
