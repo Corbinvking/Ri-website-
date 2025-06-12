@@ -9,33 +9,30 @@ import Script from "next/script"
 
 export default function ContactPage() {
   useEffect(() => {
-    // Listen for GHL booking completion events
+    // Listen for GHL booking completion events (simplified to avoid interference)
     const handleBookingSuccess = (event: MessageEvent) => {
-      // Check if message is from GHL calendar iframe
-      if (event.origin === 'https://api.leadconnectorhq.com') {
+      // Only listen for messages from GHL and check for booking success
+      if (event.origin === 'https://api.leadconnectorhq.com' && event.data) {
         try {
           const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
           
-          // Look for booking success indicators
+          // Look for specific booking success indicators
           if (
             data.type === 'calendar_booking_success' ||
             data.type === 'appointment_scheduled' ||
-            data.message === 'appointment_booked' ||
-            (data.event && data.event.includes('booking_success'))
+            data.message === 'appointment_booked'
           ) {
             console.log('Calendar booking detected on contact page:', data);
-            
-            // Redirect to thank you page
             window.location.href = '/thank-you';
           }
         } catch (error) {
-          console.log('Error parsing booking event:', error);
+          // Silently handle parsing errors to avoid console spam
         }
       }
     };
 
-    // Add event listener for iframe messages
-    window.addEventListener('message', handleBookingSuccess);
+    // Add event listener with passive option for better performance
+    window.addEventListener('message', handleBookingSuccess, { passive: true });
 
     // Cleanup
     return () => {
