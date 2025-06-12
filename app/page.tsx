@@ -2,13 +2,12 @@
 
 import { useEffect } from "react"
 import { Navbar } from "@/components/navbar"
+import { Footer } from "@/components/footer"
 import { HeroSection } from "@/components/hero-section"
 import { IntegrationsSection } from "@/components/integrations-section"
 import { IndustryCarousel } from "@/components/industry-carousel"
-import { FeaturesSection } from "@/components/features-section"
-import { CalendarConsultationSection } from "@/components/calendar-consultation-section"
 import { TestimonialsSection } from "@/components/enterprise-section"
-import { Footer } from "@/components/footer"
+import { CalendarConsultationSection } from "@/components/calendar-consultation-section"
 import Script from "next/script"
 
 export default function Home() {
@@ -37,11 +36,10 @@ export default function Home() {
       />
       
       <HeroSection />
-      <IntegrationsSection />
       <IndustryCarousel />
-      <FeaturesSection />
-      <CalendarConsultationSection />
+      <IntegrationsSection />
       <TestimonialsSection />
+      <CalendarConsultationSection />
       <Footer />
     </main>
   )

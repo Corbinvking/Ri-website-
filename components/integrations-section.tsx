@@ -43,7 +43,7 @@ export function IntegrationsSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           <GradientCard
-            className="w-full h-auto min-h-[700px]"
+            className="w-full h-auto min-h-[750px]"
             title="Voice AI Facilitation"
             description="Deploy intelligent voice agents that sound completely natural and understand context. Perfect for customer service, appointment scheduling, and lead qualification."
             icon={<Mic className="w-6 h-6 text-white" />}
@@ -116,7 +116,7 @@ export function IntegrationsSection() {
           </GradientCard>
 
           <GradientCard
-            className="w-full h-auto min-h-[700px]"
+            className="w-full h-auto min-h-[750px]"
             title="Workflow Automation"
             description="Streamline your operations with AI-powered workflow automation. Reduce manual tasks by up to 80% while improving accuracy."
             icon={<Workflow className="w-6 h-6 text-white" />}
@@ -184,7 +184,7 @@ export function IntegrationsSection() {
           </GradientCard>
 
           <GradientCard
-            className="w-full h-auto min-h-[700px]"
+            className="w-full h-auto min-h-[750px]"
             title="AI Administration & Consultation"
             description="Comprehensive AI audits, strategic consulting, and ongoing administration to optimize your business operations and ensure sustainable growth."
             icon={<Shield className="w-6 h-6 text-white" />}

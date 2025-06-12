@@ -23,7 +23,7 @@ export default function VSLPage() {
   return (
     <div className="min-h-screen bg-[#0d0d17] text-white">
       {/* Simple Header */}
-      <header className="py-4 px-4 border-b border-gray-800">
+      <header className="py-2 px-4 border-b border-gray-800">
         <div className="max-w-md mx-auto text-center">
           <Link href="/" className="inline-block">
             <Image 
@@ -98,12 +98,6 @@ export default function VSLPage() {
 
           {/* Voice Demo Component */}
           <div className="text-center">
-            <p className="text-white text-lg font-medium mb-3">
-              Experience Our AI Voice Technology
-            </p>
-            <p className="text-gray-300 text-sm mb-6">
-              Click below to have a real conversation with our AI assistant
-            </p>
             <VoiceDemoComponent
               publicKey={process.env.NEXT_PUBLIC_VAPI_PUBLIC_KEY || ""}
               assistantId={process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID || ""}

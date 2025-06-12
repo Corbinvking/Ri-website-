@@ -49,10 +49,10 @@ export const GradientCard = ({
     setRotation({ x: 0, y: 0 })
   }
 
-  // Use rust/orange theme colors instead of purple/blue
-  const primaryGlow = "rgba(198, 93, 7, 0.7)" // Rust color
-  const secondaryGlow = "rgba(210, 105, 30, 0.7)" // Lighter orange
-  const accentGlow = "rgba(139, 69, 19, 0.7)" // Darker rust
+  // Use rust/orange theme colors instead of purple/blue - reduced opacity for subtler glow
+  const primaryGlow = "rgba(198, 93, 7, 0.4)" // Reduced from 0.7 to 0.4
+  const secondaryGlow = "rgba(210, 105, 30, 0.4)" // Reduced from 0.7 to 0.4
+  const accentGlow = "rgba(139, 69, 19, 0.4)" // Reduced from 0.7 to 0.4
 
   return (
     <motion.div
@@ -63,7 +63,7 @@ export const GradientCard = ({
         height: "450px",
         transformStyle: "preserve-3d",
         backgroundColor: "#0e131f",
-        boxShadow: `0 -10px 100px 10px ${primaryGlow}, 0 0 10px 0 rgba(0, 0, 0, 0.5)`,
+        boxShadow: `0 -10px 60px 8px ${primaryGlow}, 0 0 8px 0 rgba(0, 0, 0, 0.5)`, // Reduced from 100px to 60px and 10px to 8px
       }}
       initial={{ y: 0 }}
       animate={{
@@ -143,10 +143,10 @@ export const GradientCard = ({
             radial-gradient(ellipse at bottom right, ${primaryGlow} -10%, rgba(79, 70, 229, 0) 70%),
             radial-gradient(ellipse at bottom left, ${secondaryGlow} -10%, rgba(79, 70, 229, 0) 70%)
           `,
-          filter: "blur(40px)",
+          filter: "blur(25px)",
         }}
         animate={{
-          opacity: isHovered ? 0.9 : 0.8,
+          opacity: isHovered ? 0.7 : 0.5,
           y: isHovered ? rotation.x * 0.5 : 0,
           z: 0,
         }}
@@ -163,10 +163,10 @@ export const GradientCard = ({
           background: `
             radial-gradient(circle at bottom center, ${primaryGlow} -20%, rgba(79, 70, 229, 0) 60%)
           `,
-          filter: "blur(45px)",
+          filter: "blur(30px)",
         }}
         animate={{
-          opacity: isHovered ? 0.85 : 0.75,
+          opacity: isHovered ? 0.6 : 0.4,
           y: isHovered ? `calc(10% + ${rotation.x * 0.3}px)` : "10%",
           z: 0,
         }}
@@ -185,9 +185,9 @@ export const GradientCard = ({
         }}
         animate={{
           boxShadow: isHovered
-            ? `0 0 20px 4px ${primaryGlow}, 0 0 30px 6px ${accentGlow}, 0 0 40px 8px ${secondaryGlow}`
-            : `0 0 15px 3px ${primaryGlow}, 0 0 25px 5px ${accentGlow}, 0 0 35px 7px ${secondaryGlow}`,
-          opacity: isHovered ? 1 : 0.9,
+            ? `0 0 15px 3px ${primaryGlow}, 0 0 20px 4px ${accentGlow}, 0 0 25px 5px ${secondaryGlow}`
+            : `0 0 10px 2px ${primaryGlow}, 0 0 15px 3px ${accentGlow}, 0 0 20px 4px ${secondaryGlow}`,
+          opacity: isHovered ? 0.8 : 0.6,
           z: 0.5,
         }}
         transition={{
@@ -274,7 +274,7 @@ export const GradientCard = ({
       />
 
       {/* Card content */}
-      <motion.div className="relative flex flex-col h-full p-8 z-40" animate={{ z: 2 }}>
+      <motion.div className="relative flex flex-col h-full p-8 pb-6 z-40" animate={{ z: 2 }}>
         {children ? (
           children
         ) : (
