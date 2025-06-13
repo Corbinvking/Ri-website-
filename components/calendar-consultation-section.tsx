@@ -1,40 +1,7 @@
 import { DottedBackground } from "@/components/ui/dotted-vignette-background"
 import { Calendar, Clock, CheckCircle, Star } from "lucide-react"
-import { useEffect } from "react"
 
 export function CalendarConsultationSection() {
-  useEffect(() => {
-    // Listen for GHL booking completion events (optimized for performance)
-    const handleBookingSuccess = (event: MessageEvent) => {
-      // Only listen for messages from GHL and check for booking success
-      if (event.origin === 'https://api.leadconnectorhq.com' && event.data) {
-        try {
-          const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-          
-          // Look for specific booking success indicators
-          if (
-            data.type === 'calendar_booking_success' ||
-            data.type === 'appointment_scheduled' ||
-            data.message === 'appointment_booked'
-          ) {
-            console.log('Calendar booking detected:', data);
-            window.location.href = '/thank-you';
-          }
-        } catch (error) {
-          // Silently handle parsing errors to avoid console spam
-        }
-      }
-    };
-
-    // Add event listener with passive option for better performance
-    window.addEventListener('message', handleBookingSuccess, { passive: true });
-
-    // Cleanup
-    return () => {
-      window.removeEventListener('message', handleBookingSuccess);
-    };
-  }, []);
-
   return (
     <section className="relative py-20 overflow-hidden">
       {/* Dotted Background */}

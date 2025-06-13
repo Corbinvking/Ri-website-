@@ -1,6 +1,3 @@
-"use client"
-
-import { useEffect } from "react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { DottedBackground } from "@/components/ui/dotted-vignette-background"
@@ -8,38 +5,6 @@ import { Brain, Mail, Phone, MapPin, Clock, Calendar } from "lucide-react"
 import Script from "next/script"
 
 export default function ContactPage() {
-  useEffect(() => {
-    // Listen for GHL booking completion events (simplified to avoid interference)
-    const handleBookingSuccess = (event: MessageEvent) => {
-      // Only listen for messages from GHL and check for booking success
-      if (event.origin === 'https://api.leadconnectorhq.com' && event.data) {
-        try {
-          const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-          
-          // Look for specific booking success indicators
-          if (
-            data.type === 'calendar_booking_success' ||
-            data.type === 'appointment_scheduled' ||
-            data.message === 'appointment_booked'
-          ) {
-            console.log('Calendar booking detected on contact page:', data);
-            window.location.href = '/thank-you';
-          }
-        } catch (error) {
-          // Silently handle parsing errors to avoid console spam
-        }
-      }
-    };
-
-    // Add event listener with passive option for better performance
-    window.addEventListener('message', handleBookingSuccess, { passive: true });
-
-    // Cleanup
-    return () => {
-      window.removeEventListener('message', handleBookingSuccess);
-    };
-  }, []);
-
   return (
     <main className="min-h-screen bg-[#0d0d17] text-white overflow-x-hidden">
       <Navbar />
