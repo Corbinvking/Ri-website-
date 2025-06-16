@@ -22,6 +22,17 @@ export function Navbar() {
     }
   }
 
+  const scrollToProducts = () => {
+    if (pathname === "/") {
+      const productsSection = document.querySelector('#products')
+      if (productsSection) {
+        productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    } else {
+      router.push('/#products')
+    }
+  }
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-[#0d0d17]/90 backdrop-blur supports-[backdrop-filter]:bg-[#0d0d17]/60">
       <div className="container flex h-20 items-center justify-between">
@@ -40,7 +51,7 @@ export function Navbar() {
             </div>
           </Link>
           
-          <nav className="flex items-center gap-4 md:gap-8">
+          <nav className="flex items-center gap-4 md:gap-8 justify-start -ml-2 md:ml-0">
             <Link 
               href="/" 
               className={`hidden md:block text-sm font-medium transition-all duration-300 relative ${
@@ -56,6 +67,12 @@ export function Navbar() {
               className="text-sm font-medium transition-all duration-300 relative text-gray-200 hover:text-rust bg-gradient-to-r from-rust/20 to-orange-500/20 px-4 py-2 rounded-lg border border-rust/30 hover:shadow-[0_0_20px_rgba(198,93,7,0.5)] hover:border-rust/50"
             >
               Industries
+            </button>
+            <button 
+              onClick={scrollToProducts}
+              className="text-sm font-medium transition-all duration-300 relative text-gray-200 hover:text-rust bg-gradient-to-r from-rust/20 to-orange-500/20 px-4 py-2 rounded-lg border border-rust/30 hover:shadow-[0_0_20px_rgba(198,93,7,0.5)] hover:border-rust/50"
+            >
+              Services
             </button>
           </nav>
         </div>

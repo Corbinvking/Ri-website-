@@ -5,7 +5,7 @@ import { GradientCard } from "@/components/ui/gradient-card"
 import { Button } from "@/components/ui/button"
 import { DemoLeadPopup } from "@/components/ui/demo-lead-popup"
 import { DottedBackground } from "@/components/ui/dotted-vignette-background"
-import { Brain, Mic, Workflow, Play, Shield, CheckCircle, Users } from "lucide-react"
+import { Brain, Mic, Workflow, Play, Shield, CheckCircle, Users, Megaphone } from "lucide-react"
 
 export function IntegrationsSection() {
   const [isDemoPopupOpen, setIsDemoPopupOpen] = useState(false)
@@ -38,12 +38,12 @@ export function IntegrationsSection() {
         </div>
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">AI Products Built for Business</h2>
         <p className="text-gray-300 text-center mb-16 max-w-3xl mx-auto">
-          Three comprehensive AI solutions designed to transform how businesses operate, optimize, and serve their customers.
+          Four comprehensive AI solutions designed to transform how businesses operate, optimize, and serve their customers.
         </p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8 items-stretch">
           <GradientCard
-            className="w-full h-auto min-h-[750px]"
+            className="h-auto min-h-[750px]"
             title="Voice AI Facilitation"
             description="Deploy intelligent voice agents that sound completely natural and understand context. Perfect for customer service, appointment scheduling, and lead qualification."
             icon={<Mic className="w-6 h-6 text-white" />}
@@ -116,7 +116,7 @@ export function IntegrationsSection() {
           </GradientCard>
 
           <GradientCard
-            className="w-full h-auto min-h-[750px]"
+            className="h-auto min-h-[750px]"
             title="Workflow Automation"
             description="Streamline your operations with AI-powered workflow automation. Reduce manual tasks by up to 80% while improving accuracy."
             icon={<Workflow className="w-6 h-6 text-white" />}
@@ -184,7 +184,7 @@ export function IntegrationsSection() {
           </GradientCard>
 
           <GradientCard
-            className="w-full h-auto min-h-[750px]"
+            className="h-auto min-h-[750px]"
             title="AI Administration & Consultation"
             description="Comprehensive AI audits, strategic consulting, and ongoing administration to optimize your business operations and ensure sustainable growth."
             icon={<Shield className="w-6 h-6 text-white" />}
@@ -250,6 +250,59 @@ export function IntegrationsSection() {
                 </div>
               </div>
 
+              <div className="mt-auto">
+                <Button asChild className="w-full bg-rust hover:bg-dark-rust text-cream">
+                  <a href="/contact">Get Started</a>
+                </Button>
+              </div>
+            </div>
+          </GradientCard>
+
+          <GradientCard
+            className="h-auto min-h-[750px]"
+            title="Marketing Services"
+            description="Comprehensive digital marketing to grow your business: Meta Ads, Google Ads, TikTok Ads, SEO, GBP Ranker, Backlinks, Content, and Social Posts."
+            icon={<Megaphone className="w-6 h-6 text-white" />}
+            linkText="Get Started"
+          >
+            <div className="h-full flex flex-col">
+              <div className="inline-flex items-center px-3 py-1 rounded-full bg-[#2a2a40] text-sm mb-4">
+                <Megaphone className="h-4 w-4 text-rust mr-2" />
+                Digital Marketing
+              </div>
+              <h3 className="text-2xl font-bold mb-4">Marketing Services</h3>
+              <p className="text-gray-300 mb-6">
+                Unlock growth with our full suite of marketing services:
+              </p>
+              {/* Service List - prettier */}
+              <div className="bg-[#181c2a]/80 rounded-xl p-4 mb-6 shadow-inner">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
+                  <li className="flex items-center gap-2 text-rust-100 font-medium">
+                    <CheckCircle className="w-4 h-4 text-rust" /> Meta Ads (Facebook & Instagram)
+                  </li>
+                  <li className="flex items-center gap-2 text-rust-100 font-medium">
+                    <CheckCircle className="w-4 h-4 text-rust" /> Google Ads
+                  </li>
+                  <li className="flex items-center gap-2 text-rust-100 font-medium">
+                    <CheckCircle className="w-4 h-4 text-rust" /> TikTok Ads
+                  </li>
+                  <li className="flex items-center gap-2 text-rust-100 font-medium">
+                    <CheckCircle className="w-4 h-4 text-rust" /> SEO
+                  </li>
+                  <li className="flex items-center gap-2 text-rust-100 font-medium">
+                    <CheckCircle className="w-4 h-4 text-rust" /> GBP Ranker
+                  </li>
+                  <li className="flex items-center gap-2 text-rust-100 font-medium">
+                    <CheckCircle className="w-4 h-4 text-rust" /> Backlinks
+                  </li>
+                  <li className="flex items-center gap-2 text-rust-100 font-medium">
+                    <CheckCircle className="w-4 h-4 text-rust" /> Content Creation
+                  </li>
+                  <li className="flex items-center gap-2 text-rust-100 font-medium">
+                    <CheckCircle className="w-4 h-4 text-rust" /> Social Posts
+                  </li>
+                </ul>
+              </div>
               <div className="mt-auto">
                 <Button asChild className="w-full bg-rust hover:bg-dark-rust text-cream">
                   <a href="/contact">Get Started</a>
