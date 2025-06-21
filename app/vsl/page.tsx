@@ -49,7 +49,7 @@ export default function VSLPage() {
               <span className="text-rust">Start Growing Your Business</span>
             </h2>
             <p className="text-gray-300 text-lg">
-              Watch how AI-powered staff can handle your calls, bookings, and follow-ups 24/7
+At Rivers Intelligence, our mission is to empower local service providers and professionals across industries with cutting-edge AI tools that streamline operations, boost efficiency, and elevate customer experiences. We specialize in voice AI, workflow automation, and strategic consulting to help businesses reduce overhead, increase responsiveness, and stay competitive in a fast-changing market. By integrating natural language processing and intelligent automation, we enable 24/7 service capabilities that free teams to focus on what matters most. Our tailored approach ensures every solution delivers measurable value, from dental offices to HVAC companies and beyond. We are committed to helping Richmond businesses thrive through accessible, practical, and transformative AI innovation.
             </p>
           </div>
 
